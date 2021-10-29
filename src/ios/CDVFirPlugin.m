@@ -12,13 +12,18 @@
 
 - (void)versionCheck:(CDVInvokedUrlCommand*)command {
     
-    if ([self settingForKey:@"AppleUrl"]) {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [self settingForKey:@"AppleUrl"]] options:@{} completionHandler:nil];
+    NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FirConfig" ofType:@"plist"];
+    NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
+
+    NSString *appUrl = [data objectForKey:@"APPLE_URL"];
+    
+    if(nil != appUrl && ![appUrl isEqualToString:@""]){
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: appUrl] options:@{} completionHandler:nil];
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         return;
     }
-    
+
     __weak CDVFirPlugin* weakSelf = self;
     
     [VersionChecker check:^(NSString *upgradeUrl) {
