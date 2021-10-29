@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-fir-upgrade" version="1.0.0"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>FirUpgrade</name>
+    <js-module name="fir" src="www/fir.js">
+        <clobbers target="cordova.plugins.fir" />
+    </js-module>
+    <preference name="FIR_APP_ID" default="your fir appid" />
+    <preference name="FIR_API_TOKEN" default="your fir apitoken" />
+
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="FirUpgrade">
+                <param name="android-package" value="com.cicoco.cordova.fir.FirUpgrade" />
+            </feature>
+        </config-file>
+
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+
+        <config-file parent="application" target="AndroidManifest.xml">
+            <meta-data android:name="FIR_APP_ID" android:value="$FIR_APP_ID" />
+            <meta-data android:name="FIR_API_TOKEN" android:value="$FIR_API_TOKEN" />
+        </config-file>
+        <resource-file src="src/android/res/values/fir_strings.xml" target="res/values/fir_strings.xml" />
+        <resource-file src="src/android/res/values-zh/fir_strings.xml" target="res/values-zh/fir_strings.xml" />
+        <source-file src="src/android/VersionChecker.java" target-dir="src/com/cicoco/cordova/fir" />
+        <source-file src="src/android/FirUpgrade.java" target-dir="src/com/cicoco/cordova/fir" />
+    </platform>
+    
+    <platform name="ios">
+        <config-file parent="/*" target="config.xml">
+            <feature name="FirUpgrade">
+                <param name="ios-package" value="CDVFirPlugin" />
+            </feature>
+        </config-file>
+        <header-file src="src/ios/VersionChecker.h" />
+        <source-file src="src/ios/VersionChecker.m" />
+        <header-file src="src/ios/CDVFirPlugin.h" />
+        <source-file src="src/ios/CDVFirPlugin.m" />
+
+        <resource-file src="src/ios/FirConfig.plist" />
+        <config-file target="*FirConfig.plist" parent="FIR_APP_ID">
+            <string>$FIR_APP_ID</string>
+        </config-file>
+        <config-file target="*FirConfig.plist" parent="FIR_API_TOKEN">
+            <string>$FIR_API_TOKEN</string>
+        </config-file>
+    </platform>
+</plugin>

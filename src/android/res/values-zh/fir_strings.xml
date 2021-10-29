@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="new_version">新版本</string>
+    <string name="ignore_update">暂不更新</string>
+    <string name="go_to_update">前往更新</string>
+    <string name="has_new_version">存在新版本，是否前往更新?</string>
+</resources>

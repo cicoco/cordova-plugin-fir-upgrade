@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="new_version">NewVersion</string>
+    <string name="ignore_update">Ignore</string>
+    <string name="go_to_update">Upgrade</string>
+    <string name="has_new_version">New is coming, upgrade?</string>
+</resources>

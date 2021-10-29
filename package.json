@@ -1,0 +1,27 @@
+{
+  "name": "cordova-plugin-fir-upgrade",
+  "version": "1.0.0",
+  "description": "cordova fir upgrade ",
+  "cordova": {
+    "id": "cordova-plugin-fir-upgrade",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cicoco/cordova-plugin-fir-upgrade.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "tafiagu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cicoco/cordova-plugin-fir-upgrade/issues"
+  },
+  "homepage": "https://github.com/cicoco/cordova-plugin-fir-upgrade#readme"
+}
