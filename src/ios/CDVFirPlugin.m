@@ -11,6 +11,14 @@
 }
 
 - (void)versionCheck:(CDVInvokedUrlCommand*)command {
+    
+    if ([self settingForKey:@"AppleUrl"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [self settingForKey:@"AppleUrl"]] options:@{} completionHandler:nil];
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
+        return;
+    }
+    
     __weak CDVFirPlugin* weakSelf = self;
     
     [VersionChecker check:^(NSString *upgradeUrl) {
@@ -28,11 +36,7 @@
         UIAlertAction *confirm = [UIAlertAction
                                   actionWithTitle:NSLocalizedString(@"GoToUpdate", nil)
                                   style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            if ([weakSelf settingForKey:@"AppleUrl"]) {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [weakSelf settingForKey:@"AppleUrl"]] options:@{} completionHandler:nil];
-            } else {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: upgradeUrl] options:@{} completionHandler:nil];
-            }
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: upgradeUrl] options:@{} completionHandler:nil];
 
 
         }];
