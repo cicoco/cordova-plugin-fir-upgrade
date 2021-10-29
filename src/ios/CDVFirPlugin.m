@@ -4,8 +4,15 @@
 
 @implementation CDVFirPlugin
 
+
+- (id)settingForKey:(NSString*)key
+{
+    return [self.commandDelegate.settings objectForKey:[key lowercaseString]];
+}
+
 - (void)versionCheck:(CDVInvokedUrlCommand*)command {
     __weak CDVFirPlugin* weakSelf = self;
+    
     [VersionChecker check:^(NSString *upgradeUrl) {
         if (upgradeUrl == nil){
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:NO];
@@ -21,7 +28,13 @@
         UIAlertAction *confirm = [UIAlertAction
                                   actionWithTitle:NSLocalizedString(@"GoToUpdate", nil)
                                   style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString: upgradeUrl] options:@{} completionHandler:nil];
+            if ([weakSelf settingForKey:@"AppleUrl"]) {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: [weakSelf settingForKey:@"AppleUrl"]] options:@{} completionHandler:nil];
+            } else {
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString: upgradeUrl] options:@{} completionHandler:nil];
+            }
+
+
         }];
         UIAlertAction *cancel = [UIAlertAction
                                   actionWithTitle:NSLocalizedString(@"IgnoreUpdate", nil)
