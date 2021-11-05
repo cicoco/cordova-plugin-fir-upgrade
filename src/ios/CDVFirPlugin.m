@@ -11,6 +11,11 @@
 }
 
 - (void)versionCheck:(CDVInvokedUrlCommand*)command {
+
+    BOOL open = YES;
+    if (sizeof(command.arguments) > 0) {
+        open = [command.arguments objectAtIndex:0];
+    }
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FirConfig" ofType:@"plist"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
