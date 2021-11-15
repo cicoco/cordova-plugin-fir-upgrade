@@ -119,7 +119,7 @@ public class VersionChecker extends AsyncTask<Void, Void, String> {
             ApplicationInfo applicationInfo =
                     mContext.getPackageManager().getApplicationInfo(mContext.getPackageName(), PackageManager.GET_META_DATA);
             if (applicationInfo.metaData != null) {
-                appId = applicationInfo.metaData.getString("FIR_APP_ID");
+                appId = applicationInfo.metaData.getString("FIR_ANDROID_APP_ID");
                 apiToken = applicationInfo.metaData.getString("FIR_API_TOKEN");
             }
         } catch (PackageManager.NameNotFoundException e) {

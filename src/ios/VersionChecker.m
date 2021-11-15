@@ -14,7 +14,7 @@
 + (void)check:(CheckBlock) block{
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FirConfig" ofType:@"plist"];
     NSMutableDictionary *data = [[NSMutableDictionary alloc] initWithContentsOfFile:plistPath];
-    NSString *appId = [data objectForKey:@"FIR_APP_ID"];
+    NSString *appId = [data objectForKey:@"FIR_IOS_APP_ID"];
     NSString *apiToken = [data objectForKey:@"FIR_API_TOKEN"];
     
     NSString *idUrlString = [NSString stringWithFormat:@"http://api.bq04.com/apps/latest/%@?api_token=%@",appId, apiToken];

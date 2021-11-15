@@ -1,12 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
-<plugin id="cordova-plugin-fir-upgrade" version="1.0.2"
+<plugin id="cordova-plugin-fir-upgrade" version="1.0.3"
     xmlns="http://apache.org/cordova/ns/plugins/1.0"
     xmlns:android="http://schemas.android.com/apk/res/android">
     <name>FirUpgrade</name>
     <js-module name="Fir" src="www/Fir.js">
         <clobbers target="cordova.plugins.Fir" />
     </js-module>
-    <preference name="FIR_APP_ID" default="your fir appid" />
+    <preference name="FIR_ANDROID_APP_ID" default="your android fir appid" />
+    <preference name="FIR_IOS_APP_ID" default="your ios fir appid" />
     <preference name="FIR_API_TOKEN" default="your fir apitoken" />
 
     <platform name="android">
@@ -21,7 +22,7 @@
         </config-file>
 
         <config-file parent="application" target="AndroidManifest.xml">
-            <meta-data android:name="FIR_APP_ID" android:value="$FIR_APP_ID" />
+            <meta-data android:name="FIR_ANDROID_APP_ID" android:value="$FIR_ANDROID_APP_ID" />
             <meta-data android:name="FIR_API_TOKEN" android:value="$FIR_API_TOKEN" />
         </config-file>
         <resource-file src="src/android/res/values/fir_strings.xml" target="res/values/fir_strings.xml" />
@@ -42,8 +43,8 @@
         <source-file src="src/ios/CDVFirPlugin.m" />
 
         <resource-file src="src/ios/FirConfig.plist" />
-        <config-file target="*FirConfig.plist" parent="FIR_APP_ID">
-            <string>$FIR_APP_ID</string>
+        <config-file target="*FirConfig.plist" parent="FIR_IOS_APP_ID">
+            <string>$FIR_IOS_APP_ID</string>
         </config-file>
         <config-file target="*FirConfig.plist" parent="FIR_API_TOKEN">
             <string>$FIR_API_TOKEN</string>
