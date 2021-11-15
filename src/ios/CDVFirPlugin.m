@@ -13,8 +13,8 @@
 - (void)versionCheck:(CDVInvokedUrlCommand*)command {
 
     BOOL open = YES;
-    if (sizeof(command.arguments) > 0) {
-        open = [command.arguments objectAtIndex:0];
+    if(command.arguments.count > 0){
+        open = [command.arguments.firstObject boolValue];
     }
     
     NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"FirConfig" ofType:@"plist"];
@@ -22,7 +22,7 @@
 
     NSString *appUrl = [data objectForKey:@"APPLE_URL"];
     
-    if(nil != appUrl && ![appUrl isEqualToString:@""]){
+    if(open && nil != appUrl && ![appUrl isEqualToString:@""]){
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString: appUrl] options:@{} completionHandler:nil];
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsBool:YES];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
