@@ -1,6 +1,6 @@
 {
   "name": "cordova-plugin-fir-upgrade",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "cordova fir upgrade ",
   "cordova": {
     "id": "cordova-plugin-fir-upgrade",
